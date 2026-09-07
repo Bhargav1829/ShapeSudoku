@@ -123,3 +123,19 @@ ShapeSudoku/
 ├── style.css
 ├── script.js
 └── README.md
+
+
+## 🚀 How to Run
+
+### Prerequisites
+
+- Visual Studio Code
+- Google Chrome, Microsoft Edge, or Firefox
+- Live Server extension for VS Code
+
+### Run Locally
+
+1. Download or clone this repository:
+
+```bash
+git clone https://github.com/Bhargav1829/ShapeSudoku.git
