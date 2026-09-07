@@ -1,0 +1,1295 @@
+/* =========================================================
+   SHAPE SUDOKU — PREMIUM GAMING UI
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+
+/* =========================
+   RESET
+========================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* =========================
+   BODY
+========================= */
+
+body {
+    font-family: "Inter", Arial, sans-serif;
+
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: #ffffff;
+
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(109, 68, 255, 0.25),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(0, 195, 255, 0.15),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #080910 0%,
+            #10121d 50%,
+            #090a11 100%
+        );
+
+    overflow-x: hidden;
+}
+
+
+/* Ambient glow */
+
+body::before {
+    content: "";
+
+    position: fixed;
+
+    width: 400px;
+    height: 400px;
+
+    top: -180px;
+    right: -150px;
+
+    background: rgba(122, 76, 255, 0.2);
+
+    filter: blur(100px);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+body::after {
+    content: "";
+
+    position: fixed;
+
+    width: 350px;
+    height: 350px;
+
+    bottom: -180px;
+    left: -120px;
+
+    background: rgba(0, 187, 255, 0.12);
+
+    filter: blur(100px);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+
+/* =========================
+   MAIN CONTAINER
+========================= */
+
+.container {
+    width: min(94%, 1050px);
+
+    padding: 42px 30px;
+
+    position: relative;
+}
+
+
+/* =========================
+   HOME TITLE
+========================= */
+
+#homeScreen {
+    text-align: center;
+}
+
+h1 {
+    font-size: clamp(38px, 6vw, 68px);
+
+    font-weight: 800;
+
+    letter-spacing: -2px;
+
+    margin-bottom: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #a99cff,
+            #7edfff
+        );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    text-shadow:
+        0 0 40px rgba(121, 92, 255, 0.25);
+}
+
+.subtitle {
+    color: #969aaa;
+
+    font-size: 16px;
+
+    margin-bottom: 42px;
+
+    letter-spacing: 0.3px;
+}
+
+h2 {
+    font-size: 22px;
+
+    font-weight: 700;
+
+    margin-bottom: 22px;
+
+    color: #ececf4;
+}
+
+
+/* =========================
+   LEVEL CARDS
+========================= */
+
+.levels {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
+
+    max-width: 850px;
+
+    margin: auto;
+}
+
+.levels button {
+    position: relative;
+
+    min-height: 145px;
+
+    padding: 25px 18px;
+
+    border: 1px solid rgba(255,255,255,0.09);
+
+    border-radius: 20px;
+
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.10),
+            rgba(255,255,255,0.035)
+        );
+
+    backdrop-filter: blur(18px);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.08),
+        0 15px 40px rgba(0,0,0,0.25);
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.levels button::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent 20%,
+            rgba(255,255,255,0.08),
+            transparent 80%
+        );
+
+    transform: translateX(-100%);
+
+    transition: transform 0.6s ease;
+}
+
+.levels button:hover::before {
+    transform: translateX(100%);
+}
+
+.levels button:hover {
+    transform: translateY(-7px) scale(1.015);
+
+    border-color:
+        rgba(144, 120, 255, 0.5);
+
+    box-shadow:
+        0 20px 45px rgba(0,0,0,0.35),
+        0 0 30px rgba(109, 88, 255, 0.15);
+}
+
+.levels span {
+    display: block;
+
+    font-size: 20px;
+
+    font-weight: 700;
+
+    margin-bottom: 10px;
+}
+
+.levels small {
+    display: block;
+
+    font-size: 16px;
+
+    color: #adb0bf;
+
+    margin-bottom: 10px;
+}
+
+.levels em {
+    display: inline-block;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+
+    font-style: normal;
+
+    font-weight: 600;
+
+    color: #c8c7d4;
+
+    background: rgba(255,255,255,0.07);
+}
+
+
+/* Different level glow */
+
+.levels button:nth-child(1):hover {
+    box-shadow:
+        0 20px 45px rgba(0,0,0,0.35),
+        0 0 35px rgba(0, 220, 170, 0.15);
+}
+
+.levels button:nth-child(2):hover {
+    box-shadow:
+        0 20px 45px rgba(0,0,0,0.35),
+        0 0 35px rgba(60, 160, 255, 0.15);
+}
+
+.levels button:nth-child(3):hover {
+    box-shadow:
+        0 20px 45px rgba(0,0,0,0.35),
+        0 0 35px rgba(140, 100, 255, 0.18);
+}
+
+.levels button:nth-child(4):hover,
+.levels button:nth-child(5):hover,
+.levels button:nth-child(6):hover {
+    box-shadow:
+        0 20px 45px rgba(0,0,0,0.35),
+        0 0 35px rgba(255, 75, 150, 0.14);
+}
+
+
+/* Challenge */
+
+.challenge {
+    grid-column: 2 !important;
+
+    border-color:
+        rgba(255, 193, 7, 0.25) !important;
+}
+
+.challenge:hover {
+    border-color:
+        rgba(255, 193, 7, 0.6) !important;
+
+    box-shadow:
+        0 20px 45px rgba(0,0,0,0.35),
+        0 0 35px rgba(255,193,7,0.16) !important;
+}
+
+
+/* =========================
+   HIDDEN
+========================= */
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =========================
+   GAME AREA
+========================= */
+
+#gameArea {
+    animation: fadeIn 0.35s ease;
+}
+
+@keyframes fadeIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================
+   GAME HEADER / HUD
+========================= */
+
+.game-header {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 12px;
+
+    margin-bottom: 22px;
+}
+
+.game-header > div {
+    min-height: 74px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 5px;
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    border-radius: 16px;
+
+    background:
+        rgba(255,255,255,0.055);
+
+    backdrop-filter: blur(14px);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.06);
+}
+
+.game-header strong {
+    font-size: 17px;
+}
+
+.game-header span {
+    color: #aeb1c3;
+    font-size: 13px;
+}
+
+
+/* =========================
+   BOARD CONTAINER
+========================= */
+
+#board {
+    display: grid;
+
+    margin: 0 auto;
+
+    width: min(82vw, 620px);
+
+    aspect-ratio: 1;
+
+    padding: 7px;
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #191b29,
+            #0d0f18
+        );
+
+    border:
+        1px solid rgba(255,255,255,0.12);
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,0.4),
+        0 0 60px rgba(100,80,255,0.08);
+
+    overflow: hidden;
+}
+
+
+/* =========================
+   CELLS
+========================= */
+
+.cell {
+    position: relative;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    border:
+        1px solid rgba(255,255,255,0.08);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.065),
+            rgba(255,255,255,0.025)
+        );
+
+    color: #f4f4fb;
+
+    font-size:
+        clamp(20px, 5vw, 43px);
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    user-select: none;
+
+    transition:
+        background 0.18s ease,
+        transform 0.15s ease,
+        box-shadow 0.18s ease;
+}
+
+.cell:hover {
+    background:
+        rgba(145, 120, 255, 0.13);
+
+    box-shadow:
+        inset 0 0 25px rgba(145,120,255,0.09);
+
+    z-index: 2;
+}
+
+.cell.selected {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(117,95,255,0.26),
+            rgba(80,180,255,0.10)
+        );
+
+    box-shadow:
+        inset 0 0 25px rgba(117,95,255,0.16),
+        0 0 20px rgba(117,95,255,0.14);
+
+    border-color:
+        rgba(155,140,255,0.55);
+
+    z-index: 3;
+}
+
+.cell.hint {
+    background:
+        rgba(55, 220, 160, 0.16) !important;
+
+    border-color:
+        rgba(55,220,160,0.4) !important;
+
+    box-shadow:
+        inset 0 0 20px rgba(55,220,160,0.1),
+        0 0 15px rgba(55,220,160,0.12);
+
+    animation: hintPulse 1s ease;
+}
+
+@keyframes hintPulse {
+
+    0% {
+        transform: scale(0.85);
+    }
+
+    60% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.cell.wrong {
+    background:
+        rgba(255, 70, 95, 0.16) !important;
+
+    border-color:
+        rgba(255, 70, 95, 0.45);
+
+    animation: shake 0.3s ease;
+}
+
+@keyframes shake {
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    50% {
+        transform: translateX(5px);
+    }
+
+    75% {
+        transform: translateX(-4px);
+    }
+}
+
+
+/* =========================
+   SHAPE PICKER
+========================= */
+
+#shapes {
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin: 23px 0;
+}
+
+.shape-button {
+    width: 60px;
+    height: 60px;
+
+    border-radius: 16px;
+
+    border:
+        1px solid rgba(255,255,255,0.10);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.10),
+            rgba(255,255,255,0.035)
+        );
+
+    color: #ffffff;
+
+    font-size: 28px;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.07),
+        0 8px 20px rgba(0,0,0,0.22);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.shape-button:hover {
+    transform:
+        translateY(-5px)
+        scale(1.06);
+
+    border-color:
+        rgba(140,120,255,0.55);
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,0.3),
+        0 0 25px rgba(120,100,255,0.15);
+}
+
+.shape-button:active {
+    transform: scale(0.94);
+}
+
+
+/* =========================
+   GAME BUTTONS
+========================= */
+
+.game-buttons {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    margin-bottom: 12px;
+}
+
+.check-button,
+.hint-button,
+.back-button {
+    font-family: inherit;
+
+    border: none;
+
+    border-radius: 12px;
+
+    padding: 13px 24px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.check-button {
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6855ff,
+            #3977ff
+        );
+
+    box-shadow:
+        0 10px 25px rgba(82,90,255,0.25);
+}
+
+.check-button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 15px 32px rgba(82,90,255,0.35);
+}
+
+.hint-button {
+    color: #16130a;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffd45a,
+            #ffb72c
+        );
+
+    box-shadow:
+        0 10px 25px rgba(255,190,40,0.18);
+}
+
+.hint-button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 15px 32px rgba(255,190,40,0.28);
+}
+
+.back-button {
+    color: #d7d9e4;
+
+    background:
+        rgba(255,255,255,0.065);
+
+    border:
+        1px solid rgba(255,255,255,0.08);
+}
+
+.back-button:hover {
+    transform: translateY(-2px);
+
+    background:
+        rgba(255,255,255,0.10);
+}
+
+
+/* =========================
+   RESULT SCREEN
+========================= */
+
+#resultScreen {
+    text-align: center;
+
+    animation: fadeIn 0.4s ease;
+}
+
+#resultScreen h1 {
+    margin-bottom: 28px;
+}
+
+.result-card {
+    max-width: 440px;
+
+    margin: 0 auto 28px;
+
+    padding: 28px;
+
+    border-radius: 22px;
+
+    border:
+        1px solid rgba(255,255,255,0.09);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.09),
+            rgba(255,255,255,0.035)
+        );
+
+    backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 25px 60px rgba(0,0,0,0.35);
+}
+
+.result-card p {
+    padding: 13px 0;
+
+    border-bottom:
+        1px solid rgba(255,255,255,0.07);
+
+    color: #b8bac8;
+
+    font-size: 15px;
+}
+
+.result-card p:last-child {
+    border-bottom: none;
+}
+
+.result-card strong {
+    color: #ffffff;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 760px) {
+
+    .container {
+        width: 95%;
+
+        padding:
+            28px 12px;
+    }
+
+    .levels {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .challenge {
+        grid-column: auto !important;
+    }
+
+    .game-header {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    h1 {
+        font-size: 38px;
+    }
+
+    .levels {
+        grid-template-columns: 1fr;
+    }
+
+    .levels button {
+        min-height: 120px;
+    }
+
+    .game-header {
+        gap: 8px;
+    }
+
+    .game-header > div {
+        min-height: 65px;
+    }
+
+    #board {
+        width: 94vw;
+
+        padding: 5px;
+
+        border-radius: 15px;
+    }
+
+    .shape-button {
+        width: 52px;
+        height: 52px;
+
+        font-size: 24px;
+    }
+
+    .game-buttons {
+        flex-direction: column;
+    }
+
+    .check-button,
+    .hint-button {
+        width: 100%;
+    }
+}
+
+/* =========================================================
+   PREMIUM SHAPES
+========================================================= */
+
+.game-shape {
+    width: 62%;
+    height: 62%;
+
+    position: relative;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    filter:
+        drop-shadow(
+            0 0 7px rgba(255,255,255,0.18)
+        );
+
+    transition:
+        transform 0.2s ease,
+        filter 0.2s ease;
+}
+
+
+/* =========================
+   CIRCLE
+========================= */
+
+.game-shape.circle {
+    width: 55%;
+    height: 55%;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 30% 25%,
+            #ffffff,
+            #9c8cff 18%,
+            #6047ff 55%,
+            #30217a 100%
+        );
+
+    border:
+        2px solid rgba(255,255,255,0.65);
+
+    box-shadow:
+        inset -7px -9px 14px rgba(0,0,0,0.3),
+        inset 4px 4px 9px rgba(255,255,255,0.3),
+        0 0 16px rgba(111,88,255,0.65);
+}
+
+
+/* =========================
+   TRIANGLE
+========================= */
+
+.game-shape.triangle {
+
+    width: 0;
+    height: 0;
+
+    border-left:
+        22px solid transparent;
+
+    border-right:
+        22px solid transparent;
+
+    border-bottom:
+        42px solid #62d9ff;
+
+    filter:
+        drop-shadow(
+            0 0 9px rgba(80,205,255,0.65)
+        );
+}
+
+
+/* =========================
+   SQUARE
+========================= */
+
+.game-shape.square {
+
+    width: 48%;
+    height: 48%;
+
+    border-radius: 9px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff 0%,
+            #63b5ff 12%,
+            #376eff 50%,
+            #1c318d 100%
+        );
+
+    border:
+        2px solid rgba(255,255,255,0.55);
+
+    transform:
+        rotate(0deg);
+
+    box-shadow:
+        inset -7px -7px 12px rgba(0,0,0,0.3),
+        inset 4px 4px 8px rgba(255,255,255,0.35),
+        0 0 17px rgba(49,112,255,0.55);
+}
+
+
+/* =========================
+   DIAMOND
+========================= */
+
+.game-shape.diamond {
+
+    width: 43%;
+    height: 43%;
+
+    transform:
+        rotate(45deg);
+
+    border-radius: 7px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #ff79c8 20%,
+            #b635ff 55%,
+            #5b167f
+        );
+
+    border:
+        2px solid rgba(255,255,255,0.5);
+
+    box-shadow:
+        inset -5px -6px 10px rgba(0,0,0,0.3),
+        0 0 18px rgba(205,60,255,0.6);
+}
+
+
+/* =========================
+   STAR
+========================= */
+
+.game-shape.star {
+
+    width: 55%;
+    height: 55%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff7ac,
+            #ffd43d 35%,
+            #ff8a00 75%,
+            #9d3c00
+        );
+
+    clip-path:
+        polygon(
+            50% 0%,
+            61% 35%,
+            98% 35%,
+            68% 56%,
+            79% 95%,
+            50% 70%,
+            21% 95%,
+            32% 56%,
+            2% 35%,
+            39% 35%
+        );
+
+    filter:
+        drop-shadow(
+            0 0 12px rgba(255,190,40,0.65)
+        );
+}
+
+
+/* =========================
+   HEXAGON
+========================= */
+
+.game-shape.hexagon {
+
+    width: 58%;
+    height: 58%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #d7fff4,
+            #37e3ad 40%,
+            #0a8a68 100%
+        );
+
+    clip-path:
+        polygon(
+            25% 6%,
+            75% 6%,
+            100% 50%,
+            75% 94%,
+            25% 94%,
+            0% 50%
+        );
+
+    filter:
+        drop-shadow(
+            0 0 12px rgba(50,225,170,0.6)
+        );
+}
+
+
+/* =========================
+   OCTAGON
+========================= */
+
+.game-shape.octagon {
+
+    width: 55%;
+    height: 55%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffd5ef,
+            #ff5ea9 40%,
+            #9c135f 100%
+        );
+
+    clip-path:
+        polygon(
+            30% 0%,
+            70% 0%,
+            100% 30%,
+            100% 70%,
+            70% 100%,
+            30% 100%,
+            0% 70%,
+            0% 30%
+        );
+
+    filter:
+        drop-shadow(
+            0 0 12px rgba(255,75,160,0.6)
+        );
+}
+
+
+/* =========================
+   PLUS
+========================= */
+
+.game-shape.plus {
+
+    width: 58%;
+    height: 58%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #b68cff 25%,
+            #7448ff 65%,
+            #392080
+        );
+
+    clip-path:
+        polygon(
+            35% 0%,
+            65% 0%,
+            65% 35%,
+            100% 35%,
+            100% 65%,
+            65% 65%,
+            65% 100%,
+            35% 100%,
+            35% 65%,
+            0% 65%,
+            0% 35%,
+            35% 35%
+        );
+
+    filter:
+        drop-shadow(
+            0 0 12px rgba(130,85,255,0.65)
+        );
+}
+
+
+/* =========================
+   BUTTON SHAPES
+========================= */
+
+.shape-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.shape-button .game-shape {
+    width: 32px;
+    height: 32px;
+    margin: auto;
+    transform-origin: center;
+}
+
+.shape-button .game-shape.triangle {
+    width: 0;
+    height: 0;
+
+    border-left: 13px solid transparent;
+    border-right: 13px solid transparent;
+    border-bottom: 25px solid #62d9ff;
+
+    margin: auto;
+}
+
+.shape-button:hover .game-shape {
+
+    transform:
+        scale(1.13);
+}
+
+.shape-button:hover .game-shape.diamond {
+
+    transform:
+        rotate(45deg)
+        scale(1.13);
+}
+
+
+/* Keep triangle proportions */
+
+.shape-button .game-shape.triangle {
+
+    width: 0;
+    height: 0;
+
+    border-left:
+        13px solid transparent;
+
+    border-right:
+        13px solid transparent;
+
+    border-bottom:
+        25px solid #62d9ff;
+}
+
+/* =========================================
+   CONSISTENT TRIANGLE SIZE
+========================================= */
+
+.game-shape.triangle {
+    width: 58%;
+    height: 58%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #d9f8ff 0%,
+            #62d9ff 35%,
+            #209bd0 75%,
+            #12628a 100%
+        );
+
+    clip-path: polygon(
+        50% 0%,
+        100% 100%,
+        0% 100%
+    );
+
+    filter:
+        drop-shadow(
+            0 0 12px rgba(70, 205, 255, 0.65)
+        );
+
+    border: none;
+
+    transform: none;
+}
+
+
+/* Triangle inside the shape-selection buttons */
+
+.shape-button .game-shape.triangle {
+    width: 34px;
+    height: 34px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #d9f8ff 0%,
+            #62d9ff 35%,
+            #209bd0 75%,
+            #12628a 100%
+        );
+
+    clip-path: polygon(
+        50% 0%,
+        100% 100%,
+        0% 100%
+    );
+
+    border: none;
+
+    filter:
+        drop-shadow(
+            0 0 8px rgba(70, 205, 255, 0.65)
+        );
+
+    margin: auto;
+}

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Shape Sudoku</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- HOME / LEVEL SELECTION -->
+
+    <div id="homeScreen">
+
+        <h1>🔷 Shape Sudoku</h1>
+
+        <p class="subtitle">
+            Test your logic, speed and concentration
+        </p>
+
+        <h2>Select Level</h2>
+
+        <div class="levels">
+
+            <button onclick="startGame(3, 1)">
+                <span>Level 1</span>
+                <small>3 × 3</small>
+                <em>Easy</em>
+            </button>
+
+            <button onclick="startGame(4, 2)">
+                <span>Level 2</span>
+                <small>4 × 4</small>
+                <em>Easy</em>
+            </button>
+
+            <button onclick="startGame(5, 3)">
+                <span>Level 3</span>
+                <small>5 × 5</small>
+                <em>Medium</em>
+            </button>
+
+            <button onclick="startGame(6, 4)">
+                <span>Level 4</span>
+                <small>6 × 6</small>
+                <em>Medium-Hard</em>
+            </button>
+
+            <button onclick="startGame(7, 5)">
+                <span>Level 5</span>
+                <small>7 × 7</small>
+                <em>Hard</em>
+            </button>
+
+            <button onclick="startGame(8, 6)">
+                <span>Level 6</span>
+                <small>8 × 8</small>
+                <em>Very Hard</em>
+            </button>
+
+            <button class="challenge" onclick="startGame(8, 7)">
+                <span>🏆 Challenge</span>
+                <small>8 × 8</small>
+                <em>Extreme</em>
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- GAME SCREEN -->
+
+    <div id="gameArea" class="hidden">
+
+        <div class="game-header">
+
+            <div>
+                <strong id="levelText">Level 1</strong>
+                <br>
+                <span id="gridText">3 × 3</span>
+            </div>
+
+            <div>
+                ❤️ <span id="lives">3</span>
+            </div>
+
+            <div>
+                ⏱ <span id="timer">00:00</span>
+            </div>
+
+            <div>
+                ⭐ <span id="score">0</span>
+            </div>
+
+        </div>
+
+
+        <div id="board"></div>
+
+
+        <div id="shapes"></div>
+
+
+        <div class="game-buttons">
+
+            <button class="hint-button" onclick="useHint()">
+                💡 Hint (<span id="hintCount">2</span>)
+            </button>
+
+            <button class="check-button" onclick="checkPuzzle()">
+                ✅ Check
+            </button>
+
+        </div>
+
+
+        <button class="back-button" onclick="goBack()">
+            ← Select Level
+        </button>
+
+    </div>
+
+
+    <!-- RESULT SCREEN -->
+
+    <div id="resultScreen" class="hidden">
+
+        <h1>🎉 Puzzle Complete!</h1>
+
+        <div class="result-card">
+
+            <p>🏆 <strong id="resultLevel"></strong></p>
+
+            <p>⭐ Score: <strong id="resultScore"></strong></p>
+
+            <p>⏱ Time: <strong id="resultTime"></strong></p>
+
+            <p>❤️ Lives Left: <strong id="resultLives"></strong></p>
+
+            <p>❌ Mistakes: <strong id="resultMistakes"></strong></p>
+
+        </div>
+
+        <button class="check-button" onclick="playAgain()">
+            🔄 Play Again
+        </button>
+
+        <button class="back-button" onclick="goBack()">
+            ← Select Level
+        </button>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
